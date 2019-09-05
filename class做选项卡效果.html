@@ -1,0 +1,76 @@
+<!--
+ * @Autor: ErioY
+ * @Date: 2019-09-03 18:30:38
+ * @Email: 1973545559@qq.com
+ * @Github: https://github.com/ErioY
+ * @LastEditors: ErioY
+ * @LastEditTime: 2019-09-03 18:57:37
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项卡和折叠</title>
+    <style>
+    .wrap {
+        width: 480px;
+        border: 1px #000 solid;
+    }
+    button {
+        width: 160px;
+        height: 60px;
+        font-size: 24px;
+        float: left;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: #666;
+    }
+    #content {
+        height: 250px;
+        padding: 20px;
+        box-sizing: border-box;
+        font-size: 18px;
+    }
+    #ctrl {
+        overflow: hidden;
+    }
+    button.active {
+        background: white;
+        color: red;
+    }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="ctrl">
+            <button class="active">AAA</button>
+            <button>BBB</button>
+            <button>CCC</button>
+        </div>
+        <div id="content">我是第一个AAA的内容</div>
+    </div>
+    <script>
+    // 用class切换的方法做一个选项卡和一个折叠，并用css给折叠加上动画
+    var arr = ["我是第一个AAA的内容","我是第二个BBB的内容","我是第三个CCC的内容"];
+    var aBtn = document.getElementsByTagName("button");
+    var oContent = document.getElementById("content");
+    var iActive = 0;
+    for (var i = 0; i < aBtn.length; i++) {
+        aBtn[i].index = i;
+        aBtn[i].onclick = function() {
+            // 删除之前的class为active的类
+            aBtn[iActive].classList.remove("active");
+            // 添加类名
+            this.classList.toggle("active");
+            // 设置iActive的值为当前的按钮
+            iActive = this.index;
+            // 给div赋数组里的值
+            oContent.innerHTML = arr[this.index];
+        }
+    }
+    </script>
+</body>
+</html>
